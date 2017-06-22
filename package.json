@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dataBaseTest.js",
+    "start": "node dataBaseTest.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines":{
+    "node": "6.x"
+  }
 }
