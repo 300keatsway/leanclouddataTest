@@ -27,6 +27,18 @@ function newRestaurant(restaurantData) {
     return restaurant.save();
 }
 
+function querySeats(restaurant) {
+  console.log('query funciton called');
+    if (typeof restaurant == 'string') {
+        restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
+    } else if (typeof restaurant != 'AV.Object') {
+        throw new Error('仅支持传入 string 和 AV.Object');
+    }
+    let query = new AV.Query('Seat');
+    query.equalTo('under',restaurant);
+    return query.find();
+}
+
 // 调用代码如下:
 let restaurantData1 = {
     id:'r1',
@@ -59,26 +71,21 @@ newRestaurant(restaurantData3).then(result => {
 //     console.log('test');
     console.log(result.name)
     console.log(result.id);
-});
-
-
-function querySeats(restaurant) {
-  console.log('query funciton called');
-    if (typeof restaurant == 'string') {
-        restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
-    } else if (typeof restaurant != 'AV.Object') {
-        throw new Error('仅支持传入 string 和 AV.Object');
-    }
-    let query = new AV.Query('Seat');
-    query.equalTo('under',restaurant);
-    return query.find();
-}
-
-
-let restaurant = '5994668fa22b9d00572762cf';
-querySeats(restaurant).then(result => {
+  querySeats(result.id).then(resfind => {
     // result 为和平饭店里面的座位
     console.log('queryexample');
-    console.log(result);
+    console.log(resfind);
 });
+});
+
+
+
+
+
+// let restaurant = '5994668fa22b9d00572762cf';
+// querySeats(restaurant).then(result => {
+//     // result 为和平饭店里面的座位
+//     console.log('queryexample');
+//     console.log(result);
+// });
 // exports.newRestaurant = 
