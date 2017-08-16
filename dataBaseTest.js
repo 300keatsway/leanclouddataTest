@@ -74,7 +74,7 @@ function querySeats(restaurant) {
 }
 
 
-let restaurant = '5901d458da2f60005de8f51d';
+let restaurant = '5994668fa22b9d00572762cf';
 querySeats(restaurant).then(result => {
     // result 为和平饭店里面的座位
     console.log('queryexample');
