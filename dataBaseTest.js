@@ -31,6 +31,8 @@ let restaurantData = {
     'name': '和平饭店'
 };
 
+
+
 newRestaurant(restaurantData).then(result => {
     console.log(result.id);
 });
