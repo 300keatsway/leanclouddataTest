@@ -28,17 +28,56 @@ function newRestaurant(restaurantData) {
 }
 
 // 调用代码如下:
-let restaurantData = {
+let restaurantData1 = {
     'id':'r1',
     'name': '和平饭店'
 };
 
+let restaurantData2 = {
+    'id':'r2',
+    'name': '北京饭店'
+};
 
+let restaurantData3 = {
+    'id':'r3',
+    'name': '希尔顿大酒店'
+};
 
-newRestaurant(restaurantData).then(result => {
-    console.log('test');
+newRestaurant(restaurantData1).then(result => {
+//     console.log('test');
+    console.log(result.name)
+    console.log(result.id);
+});
+
+newRestaurant(restaurantData2).then(result => {
+//     console.log('test');
+    console.log(result.name)
+    console.log(result.id);
+});
+
+newRestaurant(restaurantData3).then(result => {
+//     console.log('test');
+    console.log(result.name)
     console.log(result.id);
 });
 
 
+function querySeats(restaurant) {
+    if (typeof restaurant == 'string') {
+        restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
+    } else if (typeof restaurant != 'AV.Object') {
+        throw new Error('仅支持传入 string 和 AV.Object');
+    }
+    let query = new AV.Query('Seat');
+    query.equalTo('under',restaurant);
+    return query.find();
+}
+
+
+let restaurant = '5901d458da2f60005de8f51d';
+querySeats(restaurant).then(result => {
+    // result 为和平饭店里面的座位
+    console.log('queryexample');
+    console.log(result);
+});
 // exports.newRestaurant = 
