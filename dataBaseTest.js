@@ -1,7 +1,7 @@
 'use strict';
 var AV = require('leancloud-storage');
 var express = require('express');
-var AV = require('leanengine');
+// var AV = require('leanengine');
 
 AV.init({
   appId: process.env.LEANCLOUD_APP_ID || 'kJLGvMFcKmmsa9aiBmEqI55L-gzGzoHsz',
