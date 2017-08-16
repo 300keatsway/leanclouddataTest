@@ -29,18 +29,18 @@ function newRestaurant(restaurantData) {
 
 // 调用代码如下:
 let restaurantData1 = {
-    'id':'r1',
-    'name': '和平饭店'
+    id:'r1',
+    name: '和平饭店'
 };
 
 let restaurantData2 = {
-    'id':'r2',
-    'name': '北京饭店'
+    id:'r2',
+    name: '北京饭店'
 };
 
 let restaurantData3 = {
-    'id':'r3',
-    'name': '希尔顿大酒店'
+    id:'r3',
+    name: '希尔顿大酒店'
 };
 
 newRestaurant(restaurantData1).then(result => {
@@ -63,6 +63,7 @@ newRestaurant(restaurantData3).then(result => {
 
 
 function querySeats(restaurant) {
+  console.log('query funciton called');
     if (typeof restaurant == 'string') {
         restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
     } else if (typeof restaurant != 'AV.Object') {
