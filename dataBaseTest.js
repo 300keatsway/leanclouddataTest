@@ -1,5 +1,17 @@
 'use strict';
 var AV = require('leancloud-storage');
+var express = require('express');
+var AV = require('leanengine');
+
+AV.init({
+  appId: process.env.LEANCLOUD_APP_ID || 'kJLGvMFcKmmsa9aiBmEqI55L-gzGzoHsz',
+  appKey: process.env.LEANCLOUD_APP_KEY || 'p7BjeYxDb883SnPgc1EwRKNI',
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || 'dgdqRT8XxAJireTsayhAcz1N'
+});
+
+var app = express();
+app.use(AV.express());
+app.listen(process.env.LEANCLOUD_APP_PORT);
 
 exports.newRestaurant = function newRestaurant(restaurantData) {
     let name = restaurantData.name || '';
