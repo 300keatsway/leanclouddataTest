@@ -13,7 +13,7 @@ var app = express();
 app.use(AV.express());
 app.listen(process.env.LEANCLOUD_APP_PORT);
 
-exports.newRestaurant = function newRestaurant(restaurantData) {
+function newRestaurant(restaurantData) {
     let name = restaurantData.name || '';
     if (name == '') {
         throw new Error('餐厅必须得有个名字吧，😜');
@@ -36,3 +36,6 @@ let restaurantData = {
 newRestaurant(restaurantData).then(result => {
     console.log(result.id);
 });
+
+
+// exports.newRestaurant = 
