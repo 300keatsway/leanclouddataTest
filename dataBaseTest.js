@@ -27,8 +27,8 @@ exports.newRestaurant = function newRestaurant(restaurantData) {
 
 // 调用代码如下:
 let restaurantData = {
-    id:'r1'
-    name: '和平饭店',
+    'id':'r1',
+    'name': '和平饭店'
 };
 
 newRestaurant(restaurantData).then(result => {
