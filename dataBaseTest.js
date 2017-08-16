@@ -15,6 +15,8 @@ app.listen(process.env.LEANCLOUD_APP_PORT);
 
 function newRestaurant(restaurantData) {
     let name = restaurantData.name || '';
+    console.log('new Resest function called');
+    console.log(restaurantData);
     if (name == '') {
         throw new Error('餐厅必须得有个名字吧，😜');
     }
@@ -34,6 +36,7 @@ let restaurantData = {
 
 
 newRestaurant(restaurantData).then(result => {
+    console.log('test');
     console.log(result.id);
 });
 
