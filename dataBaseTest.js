@@ -67,6 +67,7 @@ newRestaurant(restaurantData2).then(result => {
     console.log(result.id);
 });
 
+
 newRestaurant(restaurantData3).then(result => {
 //     console.log('test');
     console.log(result.name)
