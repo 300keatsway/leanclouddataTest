@@ -2264,9 +2264,20 @@ for(var j = 0; j < namearr.length; j++){
         factory: factoryarr[j],
         price: pricearr[j]
     };
-    newProduct(productData).then(result => {
-        console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
+    var query = new AV.Query('ProductList');
+    query.equalTo('name', namearr[j]).then(function (result) {
+    // 成功获得实例
+        console.log(result.name + 'exists');
+    }, function (error) {
+    // 异常处理
+        console.log(result.name + 'needs to inserted');
+        newProduct(productData).then(result => {
+            console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
+         });
     });
+    // newProduct(productData).then(result => {
+    //     console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
+    // });
 }
 
 
