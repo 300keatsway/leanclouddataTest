@@ -2294,7 +2294,7 @@ function newProduct(productData) {
 // newProductAll();
 // upload the product list to database
 
-for(var j = 0; j < 100; j++){
+for(var j = 0; j < 50; j++){
     console.log('j = ' + j);
     let productData = {
         id: j+1,
