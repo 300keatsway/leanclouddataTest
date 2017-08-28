@@ -2253,7 +2253,7 @@ function newProduct(productData) {
 
 
 function newProductAll() { 
-    productarr = [];
+    var productarr = [];
     for(var j = 0; j < namearr.length; j++){
         console.log(j);
         let productData = {
