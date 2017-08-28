@@ -2294,7 +2294,7 @@ function newProduct(productData) {
 // newProductAll();
 // upload the product list to database
 
-for(var j = 0; j < 10; j++){
+for(var j = 10; j < 50; j++){
     console.log('j = ' + j);
     let productData = {
         id: j+1,
@@ -2309,7 +2309,8 @@ for(var j = 0; j < 10; j++){
     query.equalTo('name', namearr[j]);
     query.find().then(function (result) {
     // 成功获得实例
-        console.log(result.name + 'exists');
+
+        console.log(result.toJSON() + 'exists');
     }, function (error) {
     // 异常处理
         console.log(error);
