@@ -2252,51 +2252,10 @@ function newProduct(productData) {
 }
 
 
-function newProductAll() { 
-    for(var j = 0; j < namearr.length; j++){
-        console.log(j);
-        let productData = {
-        id: j+1,
-        name: namearr[j],
-        shortname: shortnamearr[j],
-        format: formarr[j],
-        unit: unitarr[j],
-        factory: factoryarr[j],
-        price: pricearr[j]
-        };
-        let name = productData.name || '';
-        console.log('new product function called');
-    // console.log(restaurantData);
-        if (name == '') {
-            throw new Error('产品名称为空');
-        }
-        let id = productData.id || '';
-        let shortname = productData.shortname || '';
-        let format = productData.format || '';
-        let unit = productData.unit || '';
-        let factory = productData.factory || '';
-        let price = productData.price || '';
-
-        let product = new AV.Object('ProductList');
-
-        product.set('name', name);
-        product.set('id', id);
-        product.set('shortname',shortname);
-        product.set('format',format);
-        product.set('unit',unit);
-        product.set('factory',factory);
-        product.set('price',price);
-        product.save();
-
-    }
-}
-
-newProductAll();
-// upload the product list to database
-
-// for(var j = 0; j < namearr.length; j++){
-//     console.log('j = ' + j);
-//     let productData = {
+// function newProductAll() { 
+//     for(var j = 0; j < namearr.length; j++){
+//         console.log(j);
+//         let productData = {
 //         id: j+1,
 //         name: namearr[j],
 //         shortname: shortnamearr[j],
@@ -2304,24 +2263,65 @@ newProductAll();
 //         unit: unitarr[j],
 //         factory: factoryarr[j],
 //         price: pricearr[j]
-//     };
-//     var query = new AV.Query('ProductList');
-//     query.equalTo('name', namearr[j]);
-//     query.find().then(function (result) {
-//     // 成功获得实例
-//         console.log(result.name + 'exists');
-//     }, function (error) {
-//     // 异常处理
-//         console.log(error);
-//         console.log(result.name + 'needs to inserted');
-//         newProduct(productData).then(result => {
-//             console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
-//          });
-//     });
-//     // newProduct(productData).then(result => {
-//     //     console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
-//     // });
+//         };
+//         let name = productData.name || '';
+//         console.log('new product function called');
+//     // console.log(restaurantData);
+//         if (name == '') {
+//             throw new Error('产品名称为空');
+//         }
+//         let id = productData.id || '';
+//         let shortname = productData.shortname || '';
+//         let format = productData.format || '';
+//         let unit = productData.unit || '';
+//         let factory = productData.factory || '';
+//         let price = productData.price || '';
+
+//         let product = new AV.Object('ProductList');
+
+//         product.set('name', name);
+//         product.set('id', id);
+//         product.set('shortname',shortname);
+//         product.set('format',format);
+//         product.set('unit',unit);
+//         product.set('factory',factory);
+//         product.set('price',price);
+//         product.save();
+
+//     }
 // }
+
+// newProductAll();
+// upload the product list to database
+
+for(var j = 0; j < 10; j++){
+    console.log('j = ' + j);
+    let productData = {
+        id: j+1,
+        name: namearr[j],
+        shortname: shortnamearr[j],
+        format: formarr[j],
+        unit: unitarr[j],
+        factory: factoryarr[j],
+        price: pricearr[j]
+    };
+    var query = new AV.Query('ProductList');
+    query.equalTo('name', namearr[j]);
+    query.find().then(function (result) {
+    // 成功获得实例
+        console.log(result.name + 'exists');
+    }, function (error) {
+    // 异常处理
+        console.log(error);
+        console.log(result.name + 'needs to inserted');
+        newProduct(productData).then(result => {
+            console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
+         });
+    });
+    // newProduct(productData).then(result => {
+    //     console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
+    // });
+}
 
 
 
