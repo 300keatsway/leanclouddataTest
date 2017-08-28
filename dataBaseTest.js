@@ -2258,7 +2258,7 @@ for(var j = 0; j < namearr.length; j++){
         name: namearr[j],
         shortname: shortnamearr[j],
         format: formarr[j],
-        unit: uniarr[j],
+        unit: unitarr[j],
         factory: factoryarr[j],
         price: pricearr[j]
     };
