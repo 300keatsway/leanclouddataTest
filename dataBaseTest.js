@@ -2265,11 +2265,13 @@ for(var j = 0; j < namearr.length; j++){
         price: pricearr[j]
     };
     var query = new AV.Query('ProductList');
-    query.equalTo('name', namearr[j]).then(function (result) {
+    query.equalTo('name', namearr[j]);
+    query.find().then(function (result) {
     // 成功获得实例
         console.log(result.name + 'exists');
     }, function (error) {
     // 异常处理
+        console.log(error);
         console.log(result.name + 'needs to inserted');
         newProduct(productData).then(result => {
             console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
