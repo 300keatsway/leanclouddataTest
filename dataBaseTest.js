@@ -2252,7 +2252,9 @@ function newProduct(productData) {
 }
 
 // upload the product list to database
+
 for(var j = 0; j < namearr.length; j++){
+    console.log('j = ' + j);
     let productData = {
         id: j+1,
         name: namearr[j],
