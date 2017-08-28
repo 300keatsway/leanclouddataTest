@@ -2272,7 +2272,7 @@ for(var j = 0; j < namearr.length; j++){
 
 
 
-// query the 
+// query a product based on full name 
 
 
 // newRestaurant(restaurantData3).then(result => {
