@@ -2294,7 +2294,7 @@ function newProduct(productData) {
 // newProductAll();
 // upload the product list to database
 
-for(var j = 10; j < 50; j++){
+for(var j = 0; j < 100; j++){
     console.log('j = ' + j);
     let productData = {
         id: j+1,
@@ -2310,7 +2310,7 @@ for(var j = 10; j < 50; j++){
     query.find().then(function (result) {
     // 成功获得实例
         console.log('item '+ j + 'exists');
-        
+
         // console.log(result.toJSON() + 'exists');
     }, function (error) {
     // 异常处理
@@ -2320,6 +2320,10 @@ for(var j = 10; j < 50; j++){
             console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
          });
     });
+
+    setTimeout(function() {
+        console.log('wait for 3 sec');
+    }, 3000);
     // newProduct(productData).then(result => {
     //     console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
     // });
