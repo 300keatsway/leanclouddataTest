@@ -2310,6 +2310,7 @@ for(var j = 10; j < 50; j++){
     query.find().then(function (result) {
     // 成功获得实例
         console.log('item '+ j + 'exists');
+        
         // console.log(result.toJSON() + 'exists');
     }, function (error) {
     // 异常处理
