@@ -2318,7 +2318,7 @@ queryProduct(namearr[0]).then(function (result) {
     console.log(resultstr);
     console.log(resultobj[0]);
     console.log(resultobj[0].format);
-    console.log(resultobj[0].name);
+    console.log(result[0].name);
     }, function (error) {
     // 异常处理
     console.log('Not Exisited');
