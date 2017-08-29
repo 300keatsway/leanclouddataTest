@@ -2312,8 +2312,11 @@ function queryProduct(searchName) {
 queryProduct(namearr[0]).then(function (result) {
     // 成功获得实例
     console.log('Found!');
-    console.log(typeof result);
+    console.log(result.length);
     console.log(JSON.stringify(result));
+    console.log(result[0]['name']);
+    console.log(result[0]['format']);
+    console.log(result[0]['factory'])
     }, function (error) {
     // 异常处理
     console.log('Not Exisited');
