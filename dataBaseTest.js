@@ -2197,34 +2197,35 @@ pricearr = [
 '455'];
 
 
-function newRestaurant(restaurantData) {
-    let name = restaurantData.name || '';
-    console.log('new Resest function called');
-    console.log(restaurantData);
-    if (name == '') {
-        throw new Error('餐厅必须得有个名字吧，😜');
-    }
-    let id = restaurantData.id || '';
-    let restaurant = new AV.Object('Restaurant');
-    restaurant.set('name', name);
-    restaurant.set('id', id);
-    return restaurant.save();
-}
+// function newRestaurant(restaurantData) {
+//     let name = restaurantData.name || '';
+//     console.log('new Resest function called');
+//     console.log(restaurantData);
+//     if (name == '') {
+//         throw new Error('餐厅必须得有个名字吧，😜');
+//     }
+//     let id = restaurantData.id || '';
+//     let restaurant = new AV.Object('Restaurant');
+//     restaurant.set('name', name);
+//     restaurant.set('id', id);
+//     return restaurant.save();
+// }
 
 
 
-function querySeats(restaurant) {
-  console.log('query funciton called');
-    if (typeof restaurant == 'string') {
-        restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
-    } else if (typeof restaurant != 'AV.Object') {
-        throw new Error('仅支持传入 string 和 AV.Object');
-    }
-    let query = new AV.Query('Seat');
-    query.equalTo('under',restaurant);
-    return query.find();
-}
+// function querySeats(restaurant) {
+//   console.log('query funciton called');
+//     if (typeof restaurant == 'string') {
+//         restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
+//     } else if (typeof restaurant != 'AV.Object') {
+//         throw new Error('仅支持传入 string 和 AV.Object');
+//     }
+//     let query = new AV.Query('Seat');
+//     query.equalTo('under',restaurant);
+//     return query.find();
+// }
 
+// upload a new product 
 function newProduct(productData) { 
     let name = productData.name || '';
     console.log('new product function called');
@@ -2251,7 +2252,7 @@ function newProduct(productData) {
     return product.save();
 }
 
-
+// upload the product list to database
 function newProductAll() { 
     var productarr = [];
     for(var j = 0; j < namearr.length; j++){
@@ -2293,43 +2294,32 @@ function newProductAll() {
     AV.Object.saveAll(productarr);
 }
 
-newProductAll();
-// upload the product list to database
 
-// for(var j = 0; j < 50; j++){
-//     console.log('j = ' + j);
-//     let productData = {
-//         id: j+1,
-//         name: namearr[j],
-//         shortname: shortnamearr[j],
-//         format: formarr[j],
-//         unit: unitarr[j],
-//         factory: factoryarr[j],
-//         price: pricearr[j]
-//     };
-//     var query = new AV.Query('ProductList');
-//     query.equalTo('name', namearr[j]);
-//     query.find().then(function (result) {
-//     // 成功获得实例
-//         console.log('item '+ j + 'exists');
 
-//         console.log(result.toJSON() + 'exists');
-//     }, function (error) {
-//     // 异常处理
-//         console.log(error);
-//         console.log(result.name + 'needs to inserted');
-//         newProduct(productData).then(result => {
-//             console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
-//          });
-//     });
+function queryProduct(searchName) {
+  console.log('query funciton called');
+    // if (typeof searchName == 'string') {
+    //     restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
+    // } else if (typeof restaurant != 'AV.Object') {
+    //     throw new Error('仅支持传入 string 和 AV.Object');
+    // }
+    let query = new AV.Query('ProductList');
+    query.equalTo('name',searchName);
+    return query.find();
+}
 
-//     setTimeout(function() {
-//         console.log('wait for 3 sec');
-//     }, 3000);
-//     // newProduct(productData).then(result => {
-//     //     console.log(result.id + ' is:' + result.name + ' with unit' + result.format);
-//     // });
-// }
+// newProductAll();
+queryProduct(namearr[0]).then(function (result) {
+    // 成功获得实例
+    console.log('Found!');
+    console.log(typeof result);
+    console.log(result.toJSON());
+    }, function (error) {
+    // 异常处理
+    console.log('Not Exisited');
+    console.log(error.toJSON());
+});
+
 
 
 
