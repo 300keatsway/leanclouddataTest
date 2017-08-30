@@ -2314,26 +2314,36 @@ function queryProduct(searchName) {
     //     throw new Error('仅支持传入 string 和 AV.Object');
     // }
     let query = new AV.Query('ProductList');
-    query.equalTo('name',searchName);
-    query.match()
+    var input = searchName.split('-').join('');
+    var pattern = '';
+    var wordsea = '(?=.*';
+    for(var i = 0; i < input.length; i++){
+        if (input[i] != '/'){
+            pattern = pattern + wordsea + input[i] + ')'; 
+        }
+    }
+    pattern = pattern + '[' + input + ']';
+    var reg = new RegExp(pattern);
+    query.matches('name', reg);
     return query.find();
 }
 
-newProductAll();
-// queryProduct('溶血').then(function (result) {
-//     // 成功获得实例
-//     console.log('Found!');
-//     console.log(result.length);
-//     var resultstr = JSON.stringify(result);
-//     var resultobj = JSON.parse(resultstr);
-//     console.log(resultstr);
-//     console.log(resultobj[0]);
-//     console.log(resultobj[0].format);
-//     }, function (error) {
-//     // 异常处理
-//     console.log('Not Exisited');
-//     console.log(error.toJSON());
-// });
+// newProductAll();
+var querytest = 'M18溶血剂';
+queryProduct(querytest).then(function (result) {
+    // 成功获得实例
+    console.log('Found!');
+    console.log(result.length);
+    var resultstr = JSON.stringify(result);
+    var resultobj = JSON.parse(resultstr);
+    console.log(resultstr);
+    console.log(resultobj[0]);
+    console.log(resultobj[0].format);
+    }, function (error) {
+    // 异常处理
+    console.log('Not Exisited');
+    console.log(error.toJSON());
+});
 
 
 
