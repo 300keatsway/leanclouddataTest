@@ -2319,21 +2319,21 @@ function queryProduct(searchName) {
     return query.find();
 }
 
-// newProductAll();
-queryProduct('溶血').then(function (result) {
-    // 成功获得实例
-    console.log('Found!');
-    console.log(result.length);
-    var resultstr = JSON.stringify(result);
-    var resultobj = JSON.parse(resultstr);
-    console.log(resultstr);
-    console.log(resultobj[0]);
-    console.log(resultobj[0].format);
-    }, function (error) {
-    // 异常处理
-    console.log('Not Exisited');
-    console.log(error.toJSON());
-});
+newProductAll();
+// queryProduct('溶血').then(function (result) {
+//     // 成功获得实例
+//     console.log('Found!');
+//     console.log(result.length);
+//     var resultstr = JSON.stringify(result);
+//     var resultobj = JSON.parse(resultstr);
+//     console.log(resultstr);
+//     console.log(resultobj[0]);
+//     console.log(resultobj[0].format);
+//     }, function (error) {
+//     // 异常处理
+//     console.log('Not Exisited');
+//     console.log(error.toJSON());
+// });
 
 
 
