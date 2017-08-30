@@ -161,7 +161,7 @@ namearr = [
 '游离前列腺特异性抗原标准/F-PSA标准',
 '雌二醇标准/E2标准',
 '促卵泡成熟激素标准/FSH标准',
-'催乳素标准/PRL标准',
+'催(泌)乳素标准/PRL标准',
 '孕酮标准/P标准',
 '梅毒校准品/TP标准',
 '胰岛素标准/INS标准',
@@ -253,7 +253,7 @@ namearr = [
 '凡士林纱布块10×10',
 '凡士林纱布块10×20',
 '凡士林纱布块5×10',
-'一次性电极贴/片',
+'一次性电极贴(片)',
 '耳穴贴',
 '口垫有舌',
 '口垫无舌',
@@ -286,7 +286,7 @@ namearr = [
 '医用固定带',
 '自粘伤口敷料6×7CM',
 '自粘伤口敷料7×9CM',
-'尿吸管（大袋）',
+'尿吸管(大袋)',
 '一次性埋线针0.7',
 '凝血酶原时间PT',
 '凝血酶原时间TT',
@@ -299,13 +299,13 @@ namearr = [
 '一次性湿化吸氧管中规格',
 '一次性使用血液灌流器MG100A',
 '一次性使用胃镜洗消刷BW-20T',
-'血清透明质酸（HA）测定试剂盒',
-'三/III型前胶原N端肽（PIIIP N-P）测定试剂盒',
+'血清透明质酸(HA)测定试剂盒',
+'(三)III型前胶原N端肽(PIIIP N-P)测定试剂盒',
 'IV型胶原（C IV）测定试剂盒/IV型胶原肽',
 '层粘连蛋白（LN）测定试剂盒',
 '维生素B12（VB12）测定试剂盒',
-'叶酸（FA）测定试剂盒',
-'铁蛋白（FERRITIN）测定试剂盒',
+'叶酸(FA)测定试剂盒',
+'铁蛋白(FERRITIN)测定试剂盒',
 '抗人胰岛素抗体（IAA）测定试剂盒',
 '谷氨酸脱羧酶抗体（GAD65）测定试剂盒',
 '血清甲状旁腺(激)素（PTH）测定试剂盒',
@@ -2294,7 +2294,17 @@ function newProductAll() {
     AV.Object.saveAll(productarr);
 }
 
+// function addoneProduction(){
+//     return 
+// }
 
+// function queryproduct(productname){
+    // return 
+// }
+
+// function deleteoneProduct(objectID){
+
+// }
 
 function queryProduct(searchName) {
   console.log('query funciton called');
@@ -2305,11 +2315,12 @@ function queryProduct(searchName) {
     // }
     let query = new AV.Query('ProductList');
     query.equalTo('name',searchName);
+    query.match()
     return query.find();
 }
 
 // newProductAll();
-queryProduct(namearr[0]).then(function (result) {
+queryProduct('溶血').then(function (result) {
     // 成功获得实例
     console.log('Found!');
     console.log(result.length);
@@ -2318,7 +2329,6 @@ queryProduct(namearr[0]).then(function (result) {
     console.log(resultstr);
     console.log(resultobj[0]);
     console.log(resultobj[0].format);
-    console.log(result[0].name);
     }, function (error) {
     // 异常处理
     console.log('Not Exisited');
@@ -2327,7 +2337,11 @@ queryProduct(namearr[0]).then(function (result) {
 
 
 
+// function queryBoss(wechatID){ return }
 
+// function addoneUser(wechatID, boss){}
+
+// function delecteoneuser(wechatID, boss){}
 
 // query a product based on full name 
 
