@@ -2329,7 +2329,7 @@ function queryProduct(searchName) {
 }
 
 // newProductAll();
-var querytest = 'M18溶血剂';
+var querytest = '生化管';
 queryProduct(querytest).then(function (result) {
     // 成功获得实例
     console.log('Found!');
