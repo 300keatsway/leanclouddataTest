@@ -2241,7 +2241,7 @@ function newProduct(productData) {
     let price = productData.price || '';
 
     let product = new AV.Object('ProductList');
-    product.set('name', name);
+    product.set('fullname', name);
     product.set('id', id);
     product.set('shortname',shortname);
     product.set('format',format);
@@ -2281,7 +2281,7 @@ function newProductAll() {
 
         let product = new AV.Object('ProductList');
 
-        product.set('name', name);
+        product.set('fullname', name);
         product.set('id', id);
         product.set('shortname',shortname);
         product.set('format',format);
@@ -2308,46 +2308,76 @@ function newProductAll() {
 
 
 // newProductAll();
-var querytest = '生化管';
+var querytest = 'PRL';
 
 function queryProduct(searchName){
   return new Promise(function(resolve,reject){
     let query = new AV.Query('ProductList');
-    var input = searchName.split('-').join('');
-    var pattern = '';
-    var wordsea = '(?=.*';
-    for(var i = 0; i < input.length; i++){
-        if (input[i] != '/'){
-            pattern = pattern + wordsea + input[i] + ')'; 
-        }
-    }
-    pattern = pattern + '[' + input + ']';
-    var reg = new RegExp(pattern);
-    query.matches('name', reg);
-    query.find().then(function (results) {
-        console.log('Found items to be cleaned');
-        var resultstr = JSON.stringify(results);
-        console.log('inside results string: ', resultstr);
-        var resultobj = JSON.parse(resultstr);
-        console.log('inside results parse: ',resultobj);
-        var outputset = [];
-        if (resultobj.length > 3){
-            for (var n = 0; n < resultobj.length; n++){
-                if(resultobj[n].name.match(input)){
-                    outputset.push(resultobj[n]);
+    var reginput = new RegExp('^[a-zA-Z0-9-]*$');
+    var outputset = [];
+    if (reginput.test(searchName)){
+        var inputstr = searchName;
+        query.matches('fullname',inputstr);
+        query.find().then(function (results){
+            console.log('Found items found: lettersNum');
+            var resultstr = JSON.stringify(results);
+            var resultobj = JSON.parse(resultstr);
+            if (resultobj.length > 3){
+                for (var n = 0; n < resultobj.length; n++){
+                    var shortnamearr = resultobj[n].fullname.split('/');
+                    for(var s = 0; s < shortnamearr.length; s++){
+                        if(shortnamearr[s] === inputstr)){
+                            outputset.push(resultobj[n]);
+                        }
+                    }
                 }
+                if (outputset.length == 0){
+                    outputset = resultobj; 
+                }
+            }else{
+                outputset = resultobj;
             }
-            if (outputset.length == 0){
-                outputset = resultobj; 
+            console.log('inside query letterNum: ',outputset);
+            resolve(outputset); 
+            }, function (error) {
+            reject(error);
+        });
+    }else{
+        var input = searchName.split('-').join('');
+        var pattern = '';
+        var wordsea = '(?=.*';
+        for(var i = 0; i < input.length; i++){
+            if (input[i] != '/'){
+                pattern = pattern + wordsea + input[i] + ')'; 
             }
-        }else{
-            outputset = resultobj;
         }
-        console.log('inside query: ',outputset);
-        resolve(outputset); 
-        }, function (error) {
-        reject(error);
-    });
+        pattern = pattern + '[' + input + ']';
+        var reg = new RegExp(pattern);
+        query.matches('fullname', reg);
+        query.find().then(function (results) {
+            console.log('Found items to be cleaned');
+            var resultstr = JSON.stringify(results);
+            console.log('inside results string: ', resultstr);
+            var resultobj = JSON.parse(resultstr);
+            console.log('inside results parse: ',resultobj);
+            if (resultobj.length > 3){
+                for (var n = 0; n < resultobj.length; n++){
+                    if(resultobj[n].fullname.match(input)){
+                        outputset.push(resultobj[n]);
+                    }
+                }
+                if (outputset.length == 0){
+                    outputset = resultobj; 
+                }
+            }else{
+                outputset = resultobj;
+            }
+            console.log('inside query: ',outputset);
+            resolve(outputset); 
+            }, function (error) {
+            reject(error);
+        });
+    }
 });
 }
 
@@ -2359,7 +2389,7 @@ queryProduct(querytest).then(function (result) {
     var resultobj = JSON.parse(resultstr);
     console.log(resultstr);
     console.log(resultobj[0]);
-    console.log(resultobj[0].name);
+    console.log(resultobj[0].fullname);
     }).catch(function (error){
         console.log('catch: ', error);
     });
