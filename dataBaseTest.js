@@ -2308,7 +2308,7 @@ function newProductAll() {
 
 
 // newProductAll();
-var querytest = 'PRL';
+var querytest = 'P';
 
 function queryProduct(searchName){
   return new Promise(function(resolve,reject){
