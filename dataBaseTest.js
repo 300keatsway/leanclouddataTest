@@ -2326,7 +2326,7 @@ function queryProduct(searchName){
                 for (var n = 0; n < resultobj.length; n++){
                     var shortnamearr = resultobj[n].fullname.split('/');
                     for(var s = 0; s < shortnamearr.length; s++){
-                        if(shortnamearr[s] === inputstr)){
+                        if(shortnamearr[s] === inputstr){
                             outputset.push(resultobj[n]);
                         }
                     }
