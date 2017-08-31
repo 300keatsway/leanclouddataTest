@@ -2326,28 +2326,29 @@ function queryProduct(searchName){
     query.matches('name', reg);
     query.find().then(function (results) {
         console.log('Found items to be cleaned');
-            var outputset = [];
-            if (results.length > 3){
-                for (var n = 0; n < results.length; n++){
-                    if(results[n].match(input)){
-                        outputset.push(results[n]);
-                    }
+        console.log('inside results: ',results);
+        var outputset = [];
+        if (results.length > 3){
+            for (var n = 0; n < results.length; n++){
+                if(results[n].match(input)){
+                    outputset.push(results[n]);
                 }
-                if (outputset.length == 0){
-                    outputset = candiset; 
-                }
-            }else{
-                outputset = candiset;
             }
-            console.log('inside query: ',outputset);
-            resolve(outputset); 
+            if (outputset.length == 0){
+                outputset = candiset; 
+            }
+        }else{
+            outputset = candiset;
+        }
+        console.log('inside query: ',outputset);
+        resolve(outputset); 
         }, function (error) {
         reject(error);
     });
 });
 }
 
-queryProduct(querytest).then(function(result) {
+queryProduct(querytest).then(function (result) {
     // 成功获得实例
     console.log('Found!');
     console.log(result.length);
@@ -2356,7 +2357,7 @@ queryProduct(querytest).then(function(result) {
     console.log(resultstr);
     console.log(resultobj[0]);
     console.log(resultobj[0].format);
-    }).catch(function(error){
+    }).catch(function (error){
         console.log('catch: ', error);
     });
 
