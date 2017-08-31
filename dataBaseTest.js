@@ -2353,6 +2353,7 @@ function queryProduct(searchName){
         reject(error);
     });
 }
+}
 
 queryProduct(querytest).then(function (result) {
     // 成功获得实例
@@ -2364,7 +2365,7 @@ queryProduct(querytest).then(function (result) {
     console.log(resultobj[0]);
     console.log(resultobj[0].format);
     }).catch(function(error){
-        console.log('catch: ', error );
+        console.log('catch: ', error);
     });
 
 
