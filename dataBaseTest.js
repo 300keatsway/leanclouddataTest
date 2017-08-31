@@ -2328,7 +2328,7 @@ function queryProduct(searchName){
         console.log('Found items to be cleaned');
         var resultstr = JSON.stringify(results);
         console.log('inside results string: ', resultstr);
-        var resultobj = JSON.parse(resultstrs);
+        var resultobj = JSON.parse(resultstr);
         console.log('inside results parse: ',resultobj);
         var outputset = [];
         if (resultobj.length > 3){
@@ -2359,7 +2359,7 @@ queryProduct(querytest).then(function (result) {
     var resultobj = JSON.parse(resultstr);
     console.log(resultstr);
     console.log(resultobj[0]);
-    console.log(resultobj[0].format);
+    console.log(resultobj[0].name);
     }).catch(function (error){
         console.log('catch: ', error);
     });
