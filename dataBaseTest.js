@@ -2327,8 +2327,8 @@ function queryProduct(searchName){
     query.find().then(function (results) {
         console.log('Found items to be cleaned');
         var resultstr = JSON.stringify(results);
+        console.log('inside results string: ', resultstr);
         var resultobj = JSON.parse(resultstrs);
-        console.log('inside results: ',resultstr);
         console.log('inside results parse: ',resultobj);
         var outputset = [];
         if (resultobj.length > 3){
