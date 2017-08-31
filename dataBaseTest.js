@@ -2326,19 +2326,22 @@ function queryProduct(searchName){
     query.matches('name', reg);
     query.find().then(function (results) {
         console.log('Found items to be cleaned');
-        console.log('inside results: ',results);
+        var resultstr = JSON.stringify(results);
+        var resultobj = JSON.parse(resultstrs);
+        console.log('inside results: ',resultstr);
+        console.log('inside results parse: ',resultobj);
         var outputset = [];
-        if (results.length > 3){
-            for (var n = 0; n < results.length; n++){
-                if(results[n].match(input)){
-                    outputset.push(results[n]);
+        if (resultobj.length > 3){
+            for (var n = 0; n < resultobj.length; n++){
+                if(resultobj[n].name.match(input)){
+                    outputset.push(resultobj[n]);
                 }
             }
             if (outputset.length == 0){
-                outputset = candiset; 
+                outputset = resultobj; 
             }
         }else{
-            outputset = candiset;
+            outputset = resultobj;
         }
         console.log('inside query: ',outputset);
         resolve(outputset); 
