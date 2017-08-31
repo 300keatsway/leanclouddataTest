@@ -2352,7 +2352,7 @@ function queryProduct(searchName){
         }, function (error) {
         reject(error);
     });
-}
+});
 }
 
 queryProduct(querytest).then(function (result) {
