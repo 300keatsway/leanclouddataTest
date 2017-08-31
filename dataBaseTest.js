@@ -2306,15 +2306,6 @@ function newProductAll() {
 
 // }
 
-function queryProduct(searchName) {
-  console.log('query funciton called');
-    // if (typeof searchName == 'string') {
-    //     restaurant = AV.Object.createWithoutData('Restaurant', restaurant);
-    // } else if (typeof restaurant != 'AV.Object') {
-    //     throw new Error('仅支持传入 string 和 AV.Object');
-    // }
-
-}
 
 // newProductAll();
 var querytest = '生化管';
@@ -2348,6 +2339,7 @@ function queryProduct(searchName){
             }else{
                 outputset = candiset;
             }
+            console.log('inside query: ',outputset);
             resolve(outputset); 
         }, function (error) {
         reject(error);
@@ -2355,7 +2347,7 @@ function queryProduct(searchName){
 });
 }
 
-queryProduct(querytest).then(function (result) {
+queryProduct(querytest).then(function(result) {
     // 成功获得实例
     console.log('Found!');
     console.log(result.length);
