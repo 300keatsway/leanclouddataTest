@@ -2313,6 +2313,14 @@ function queryProduct(searchName) {
     // } else if (typeof restaurant != 'AV.Object') {
     //     throw new Error('仅支持传入 string 和 AV.Object');
     // }
+
+}
+
+// newProductAll();
+var querytest = '生化管';
+
+function queryProduct(searchName){
+  return new Promise(function(resolve,reject){
     let query = new AV.Query('ProductList');
     var input = searchName.split('-').join('');
     var pattern = '';
@@ -2325,11 +2333,27 @@ function queryProduct(searchName) {
     pattern = pattern + '[' + input + ']';
     var reg = new RegExp(pattern);
     query.matches('name', reg);
-    return query.find();
+    query.find().then(function (results) {
+        console.log('Found items to be cleaned');
+            var outputset = [];
+            if (results.length > 3){
+                for (var n = 0; n < results.length; n++){
+                    if(results[n].match(input)){
+                        outputset.push(results[n]);
+                    }
+                }
+                if (outputset.length == 0){
+                    outputset = candiset; 
+                }
+            }else{
+                outputset = candiset;
+            }
+            resolve(outputset); 
+        }, function (error) {
+        reject(error);
+    });
 }
 
-// newProductAll();
-var querytest = '生化管';
 queryProduct(querytest).then(function (result) {
     // 成功获得实例
     console.log('Found!');
@@ -2339,11 +2363,9 @@ queryProduct(querytest).then(function (result) {
     console.log(resultstr);
     console.log(resultobj[0]);
     console.log(resultobj[0].format);
-    }, function (error) {
-    // 异常处理
-    console.log('Not Exisited');
-    console.log(error.toJSON());
-});
+    }).catch(function(error){
+        console.log('catch: ', error );
+    });
 
 
 
